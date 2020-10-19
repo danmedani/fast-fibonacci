@@ -78,12 +78,14 @@ fn matrix_power_with_mod(mat: &Array2<u64>, pow: u64, modulo: u64) -> Array2<u64
 }
 
 fn small_big_int_to_u64(big_int: &BigUint) -> u64 {
-	let mut result: u64 = 0;
-	for digit in big_int.to_radix_be(10) {
-		result = result + digit as u64;
+    let mut result: u64 = 0;
+
+    let digits = big_int.to_radix_be(10);
+	for i in 0..digits.len() - 1 {
+		result = result + digits[i] as u64;
 		result = result * 10;
 	}
-	result / 10
+	result + digits[digits.len() - 1] as u64
 }
 
 #[cfg(test)]
@@ -111,6 +113,6 @@ mod tests {
     #[test]
     fn test_big() {
         assert_eq!(fib_with_mod(1_000_000_000_000_000, 1_000_000), 546_875);
-        assert_eq!(fib_with_mod(1_000_000_000_000_001, 1_000_000), 937_501);
+        assert_eq!(fib_with_mod(1955995342096516, u64::MAX), 2_886_946_313_980_141_317);
     }
 }
