@@ -7,7 +7,7 @@ edition = "2018"
 description = "Quickly find nth fibonacci number with modulo."
 
 repository = "https://github.com/danmedani/fast-fibonacci"
-keywords = ["fibonacci", "linear recurrence", "fast"]
+keywords = ["fibonacci", "linear", "recurrence", "fast"]
 readme = "README.md"
 
 categories = ["algorithms"]
