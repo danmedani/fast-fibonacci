@@ -6,7 +6,8 @@
 
 use ndarray::arr2;
 use ndarray::Array2;
-
+use num_bigint::BigUint;
+use num::FromPrimitive;
 
 /// Finds the nth fibonacci number with modulo. Runtime O(log(n))
 ///
@@ -43,15 +44,21 @@ pub fn fib_with_mod(n: u64, modulo: u64) -> u64 {
 }
 
 fn multiply_with_mod(a: &Array2<u64>, b: &Array2<u64>, modulo: u64) -> Array2<u64> {
-    let mut return_mat = Array2::zeros((2, 2));
+    let mut return_mat: Array2<u64> = Array2::zeros((2, 2));
+
+    let big_mod: BigUint = FromPrimitive::from_u64(modulo).unwrap();
     for i in 0..2 {
         for j in 0..2 {
             for k in 0..2 {
-                return_mat[[i, j]] = ( 
-                    return_mat[[i, j]] + (
-                        a[[i, k]] * b[[k, j]]
-                    )
-                ) % modulo;
+                let mat_ij: BigUint = FromPrimitive::from_u64(return_mat[[i, j]]).unwrap();
+                let a_ik: BigUint = FromPrimitive::from_u64(a[[i, k]]).unwrap();
+                let b_kj: BigUint = FromPrimitive::from_u64(b[[k, j]]).unwrap();
+
+                let big_val: BigUint = (mat_ij + (
+                    a_ik * b_kj
+                )) % &big_mod;
+
+                return_mat[[i, j]] = small_big_int_to_u64(&big_val);
             }
         }
     }
@@ -68,6 +75,15 @@ fn matrix_power_with_mod(mat: &Array2<u64>, pow: u64, modulo: u64) -> Array2<u64
     }
     let x = matrix_power_with_mod(mat, pow / 2, modulo);
     multiply_with_mod(&x, &x, modulo)
+}
+
+fn small_big_int_to_u64(big_int: &BigUint) -> u64 {
+	let mut result: u64 = 0;
+	for digit in big_int.to_radix_be(10) {
+		result = result + digit as u64;
+		result = result * 10;
+	}
+	result / 10
 }
 
 #[cfg(test)]

@@ -1,6 +1,6 @@
 [package]
 name = "fast-fibonacci"
-version = "0.1.0"
+version = "0.1.1"
 license = "GPL-3.0-or-later"
 authors = ["Dan <danmedani@gmail.com>"]
 edition = "2018"
@@ -14,3 +14,6 @@ categories = ["algorithms"]
 
 [dependencies]
 ndarray = "0.13.1"
+num-bigint = "0.2"
+num = "0.2.0"
+
