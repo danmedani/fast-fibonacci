@@ -1,6 +1,6 @@
 # Changelog
 
-## Cargo 0.1.2 (2020-10-19)
+## fast-fibonacci 0.1.2 (2020-10-19)
 [4b65a3b4f24...HEAD](https://github.com/danmedani/fast-fibonacci/compare/4b65a3b4f24...HEAD)
 
 
