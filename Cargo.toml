@@ -1,10 +1,10 @@
 [package]
 name = "fast-fibonacci"
-version = "0.1.2"
+version = "0.2.0"
 license = "GPL-3.0-or-later"
 authors = ["Dan <danmedani@gmail.com>"]
 edition = "2018"
-description = "Quickly find nth fibonacci number with modulo."
+description = "Quickly find nth fibonacci number with modulo. Supports u64 and BigUint."
 
 repository = "https://github.com/danmedani/fast-fibonacci"
 keywords = ["fibonacci", "linear", "recurrence", "fast"]
